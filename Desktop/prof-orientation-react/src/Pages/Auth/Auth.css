@@ -1,9 +1,0 @@
-.top-stripe {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    height: 20px;
-    left: -1px;
-    position: absolute;
-    top: -1px;
-    width: calc(100% + 2px);
- }
