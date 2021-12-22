@@ -1,0 +1,26 @@
+.navbar {
+    background-color: #314D87;
+ }
+
+ 
+ .navbar-links {
+     background-color: #314D87;
+     font-size: 16px;
+     font-weight: 600;
+     color: white;
+    }
+    
+.navbar-btn {
+       background-color: #4586D5CC;
+    }
+    
+ .navbar-links:hover {
+    background-color: white;
+ }
+
+ .navbar-title {
+    font-size: 51px;
+    font-weight: 900;
+    text-shadow: 0px 0px 10px rgb(0 0 0 / 30%);
+    color: white;
+ }

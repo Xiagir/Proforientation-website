@@ -1,0 +1,31 @@
+body {
+    font-family: "Inter", Sans-serif;
+   font-size: 15px;
+   font-weight: 400;
+   color: white;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.color-primary {
+    background-color: #0366d6;
+   color: white;
+}
+
+.color-secondary {
+    background-color: #F07D3C;
+   color: white;
+}
+
+.color-widgets {
+    background-color: white;
+   color: #3D4E84;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
