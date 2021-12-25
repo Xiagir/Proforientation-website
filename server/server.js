@@ -5,6 +5,7 @@ let bodyParser = require("body-parser");
 let database = require("./database/db");
 
 const userRoute = require("../server/routes/user.routes");
+const questionsRoute = require("../server/routes/questions.routes");
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -30,6 +31,7 @@ app.use(
 );
 app.use(cors());
 app.use("/users", userRoute);
+app.use("/questions", questionsRoute);
 
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
@@ -46,3 +48,4 @@ app.use(function (err, req, res, next) {
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);
 });
+``
