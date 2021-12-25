@@ -269,24 +269,29 @@ router.post("/nextQuestion", /*authenticate,*/ (req, res) => {
         if (strikeAnswersCount - 1 == 0) {
             switchCategory(currentQuestion, currentQuestionIndex);
             currentQuestionIndex = 0;
-            res.render("questions", { question: currentQuestion });
+            //res.render("questions", { question: currentQuestion });
+
+            res.send({ question: currentQuestion });
         }
         if (strikeOfWrongAnswersCount == 2) {
             switchCategory(currentQuestion, currentQuestionIndex);
             currentQuestionIndex = 0;
-            res.render("questions", { question: currentQuestion });
+            //res.render("questions", { question: currentQuestion });
+            res.send({ question: currentQuestion });
         }
         if ((strikeAnswersCount > 0) & (strikeAnswersCount < 3)) {
             currentQuestionIndex += 1;
             // strikeAnswersCount += 1;
             currentQuestion =
                 questionsByCategory[currentCategoryIndex][currentQuestionIndex];
-            res.render("questions", { question: currentQuestion });
+            //res.render("questions", { question: currentQuestion });
+            res.send({ question: currentQuestion });
         }
         if (strikeAnswersCount == 3) {
             switchCategory(currentQuestion, currentQuestionIndex);
             currentQuestionIndex = 0;
-            res.render("questions", { question: currentQuestion });
+            //res.render("questions", { question: currentQuestion });
+            res.send({ question: currentQuestion })
         }
     }
 });
@@ -317,7 +322,8 @@ function switchCategory(currentQ, currentQI) {
 
         result.save();
         req.session.destroy();
-        res.render("finish", {
+        //res.render("finish", {
+        res.send({
             rightA:
                 (rightAnswersFromA /
                     questionsByCategory[currentCategoryIndex].length) *
