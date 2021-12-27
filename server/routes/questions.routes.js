@@ -244,6 +244,7 @@ router.post("/nextQuestion", /*authenticate,*/ (req, res) => {
             res.send()
             // res.render("finish", {
             res.send({
+                isDone: true, 
                 rightA:
                     (rightAnswersFromA /
                         questionsByCategory[currentCategoryIndex].length) *

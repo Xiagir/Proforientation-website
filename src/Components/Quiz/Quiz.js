@@ -35,7 +35,9 @@ export default class Quiz extends Component {
     e.preventDefault();
 
     const answer = e.answer;
+    console.log(e.target);
 
+    
     axios
       .post("http://localhost:4000/questions/nextQuestion", answer)
       .then((res) => {
