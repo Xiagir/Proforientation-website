@@ -4,7 +4,7 @@ import Quiz from "../../Components/Quiz/Quiz";
 function QuizPage() {
   return (
     <div>
-      <Quiz title="Helo pidor"></Quiz>
+      <Quiz title="Hello pidor"></Quiz>
     </div>
   );
 }

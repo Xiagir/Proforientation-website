@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import axios from "axios";
 
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row } from "react-bootstrap";
+import axios from "axios";
+import QuestionAnswer from "../QuestionAnswer/QuestionAnswer";
 
 import "./Quiz.css";
 
@@ -7,9 +9,46 @@ export default class Quiz extends Component {
   constructor() {
     super();
 
+    this.onSubmit = this.onSubmit.bind(this);
+
     this.state = {
-      title: "test",
+      title: String,
+      answers: [],
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:4000/questions")
+      .then((res) => {
+        this.setState({ title: res.data.question.question_body });
+        this.setState({ answers: res.data.question.question_answers });
+        console.log(this.state);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    console.log("component mounted with a state:");
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const answer = e.answer;
+
+    axios
+      .post("http://localhost:4000/questions/nextQuestion", answer)
+      .then((res) => {
+        this.setState({
+          title: res.data.question.question_body,
+          answers: res.data.question.question_answers,
+        });
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log("gotten a new set of questions:");
   }
 
   render() {
@@ -23,37 +62,24 @@ export default class Quiz extends Component {
           >
             <Col>
               <h1 className="questions__question text-center py-4">
-                {this.props.title}
+                {this.state.title}
               </h1>
-              <div
-                className="text-secondary p-5 bg-white rounded"
-                id="question-answers"
-              >
-                <form
-                  className="w-100"
-                  method="POST"
-                  action="/questions/nextQuestion"
-                >
-                  <div
-                    class="option form-check py-2 my-1 rounded-bottom"
-                    id="customRadioButton"
-                  >
-                    <input
-                      classNameass="form-check-input"
-                      type="radio"
-                      name="answer"
-                    />
-                    <label class="option-name px-2 form-check-label">
-                      <p className="font-weight-light">Test Question</p>
-                    </label>
+              <div className="text-secondary rounded" id="question-answers">
+                <form className="w-100" onSubmit={this.onSubmit}>
+                  <div className="bg-white p-5 rounded">
+                    {this.state.answers.map((answer, i) => {
+                      console.log("Entered");
+                      // Return the element. Also pass key
+                      return <QuestionAnswer key={answer} answer={answer} />;
+                    })}
                   </div>
+                  <input
+                    type="submit"
+                    className="my-4 btn color-secondary"
+                    value="Следующий вопрос"
+                  />
                 </form>
               </div>
-              <input
-                type="submit"
-                className="my-4 btn color-secondary"
-                value="Следующий вопрос"
-              />
             </Col>
           </Col>
           <Col
